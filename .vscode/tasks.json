@@ -1,0 +1,99 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "conda activate sicurezza",
+            "type": "shell",
+            "command": "source ~/.zshrc && conda activate sicurezza",
+            "problemMatcher": [],
+            "detail": "Attiva l'ambiente Conda 'sicurezza'"
+        },
+        {
+            "label": "npm install (root)",
+            "type": "shell",
+            "command": "npm install",
+            "problemMatcher": [],
+            "dependsOn": "conda activate sicurezza",
+            "detail": "Esegue npm install nella directory principale",
+            "options": {
+                "shell": {
+                    "executable": "/bin/zsh",
+                    "args": ["-c", "source ~/.zshrc && conda activate sicurezza && npm install"]
+                }
+            }
+        },
+        {
+            "label": "compile hardhat",
+            "type": "shell",
+            "command": "npx hardhat compile",
+            "problemMatcher": [],
+            "dependsOn": "npm install (root)",
+            "detail": "Compila il progetto hardhat",
+            "options": {
+                "shell": {
+                    "executable": "/bin/zsh",
+                    "args": ["-c", "source ~/.zshrc && conda activate sicurezza && npx hardhat compile"]
+                }
+            }
+        },
+        {
+            "label": "deploy hardhat",
+            "type": "shell",
+            "command": "npx hardhat run scripts/deploy.js --network localhost",
+            "problemMatcher": [],
+            "dependsOn": "compile hardhat",
+            "detail": "Esegue lo script di deploy su localhost",
+            "options": {
+                "shell": {
+                    "executable": "/bin/zsh",
+                    "args": ["-c", "source ~/.zshrc && conda activate sicurezza && npx hardhat run scripts/deploy.js --network localhost"]
+                }
+            }
+        },
+        {
+            "label": "npm install (client)",
+            "type": "shell",
+            "command": "npm install",
+            "options": {
+                "cwd": "${workspaceFolder}/client",
+                "shell": {
+                    "executable": "/bin/zsh",
+                    "args": ["-c", "source ~/.zshrc && conda activate sicurezza && npm install"]
+                }
+            },
+            "problemMatcher": [],
+            "dependsOn": "deploy hardhat",
+            "detail": "Esegue npm install nella directory client"
+        },
+        {
+            "label": "npm start (client)",
+            "type": "shell",
+            "command": "npm start",
+            "options": {
+                "cwd": "${workspaceFolder}/client",
+                "shell": {
+                    "executable": "/bin/zsh",
+                    "args": ["-c", "source ~/.zshrc && conda activate sicurezza && npm start"]
+                }
+            },
+            "problemMatcher": [],
+            "dependsOn": "npm install (client)",
+            "detail": "Avvia il client"
+        },
+        {
+            "label": "start all",
+            "type": "shell",
+            "command": "echo Inizio processo completo",
+            "problemMatcher": [],
+            "dependsOn": [
+                "conda activate sicurezza",
+                "npm install (root)",
+                "compile hardhat",
+                "deploy hardhat",
+                "npm install (client)",
+                "npm start (client)"
+            ],
+            "detail": "Esegue tutte le task in sequenza"
+        }
+    ]
+}

@@ -1,0 +1,89 @@
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  width: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.titleCloseBtn {
+  align-self: flex-end;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.body {
+  margin: 20px 0;
+}
+
+.address {
+  display: block;
+  margin: 10px auto;
+  height: 30px;
+  width: 80%;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+input[type="text"]:focus {
+  background-color: lightblue;
+}
+
+.admin-checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.admin-checkbox input {
+  margin-right: 10px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer button {
+  width: 100px;
+  height: 35px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#cancelBtn {
+  background-color: crimson;
+}
